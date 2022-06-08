@@ -6,6 +6,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const helmet = require('helmet');
 
 const mongoDb = config.dbUrl;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -23,6 +24,8 @@ const indexRouter = require('./index');
 
 
 const app = express();
+app.use(helmet());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
