@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require("bcryptjs");
-const config = require('../config');
+const passphrase =  process.env.PASSPHRASE;
 const { body, check, validationResult} = require('express-validator');
 
 exports.user_create_get = function(req, res, next) {
@@ -78,7 +78,7 @@ exports.user_member_post = [
         'Nice Try Punk!',
     )
         .exists()
-        .custom((value) => value === config.passphrase),
+        .custom((value) => value === passphrase),
     
     
     (req, res, next) => {

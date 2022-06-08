@@ -1,4 +1,3 @@
-const config = require('./config');
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -8,7 +7,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const helmet = require('helmet');
 
-const mongoDb = config.dbUrl;
+const mongoDb = process.env.DB_URL;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
