@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div class="nav-bar">
+    <% if (currentUser) {%>
+      <h1>WELCOME BACK <%= currentUser.username %></h1>
+      <a class="button-link" href="/message-form">Write a messege</a>
+      <a class="button-link" href="/log-out">LOG OUT</a>
+    <% } else { %>
+      <h1>Please log in</h1>
+      <a class="button-link" href="/log-in">LOG IN</a>
+    <%}%>
+  </div>
+
+  <% if (currentUser && currentUser.is_member) {%>
+    <h1>Thanks for being a member</h1>
+    <% } else { %>
+    <a class="button-link" href="/member">Become A member</a>
+  <%}%>
+
+  <div class="messages-container">
+    <% if (message_list.length == 0) {%>
+      <h2>No messages</h2>
+    <% } else { %>
+      <% if (!currentUser || !currentUser.is_member) {%>
+        <% message_list.forEach(message => { %>
+          <div class="message-container">
+            <h3 class="message-name">Anonymous</h3>
+            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            <h3 class="message-text"><%= message.message %></h3>
+          </div>
+        <% }) %>
+      <% } else if (currentUser.is_member)  { %>
+        <% message_list.forEach(message => { %>
+          <div class="message-container">
+            <h3 class="message-name"><%= message.name %></h3>
+            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            <h3 class="message-text"><%= message.message %></h3>
+          </div>
+        <% }) %>
+      <%} else if (currentUser.is_member)  {%>
+        <% message_list.forEach(message => { %>
+          <div class="message-container">
+            <h3 class="message-name"><%= message.name %></h3>
+            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            <h3 class="message-text"><%= message.message %></h3>
+            <a  class="button-link" href="<%= message.delete_url %>"></a>
+          </div>
+        <% }) %>
+      <%}%>
+  <%}%>
+  </div>
+    
+      
+</body>
+</html>
