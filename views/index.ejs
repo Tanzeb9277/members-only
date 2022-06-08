@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Members Only</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body style="display: block;">
   <div class="nav-bar">
     <% if (currentUser) {%>
       <h1>WELCOME BACK <%= currentUser.username %></h1>
@@ -22,6 +23,9 @@
     <a class="button-link" href="/member">Become A member</a>
   <%}%>
 
+
+
+
   <div class="messages-container">
     <% if (message_list.length == 0) {%>
       <h2>No messages</h2>
@@ -29,26 +33,36 @@
       <% if (!currentUser || !currentUser.is_member) {%>
         <% message_list.forEach(message => { %>
           <div class="message-container">
-            <h3 class="message-name">Anonymous</h3>
-            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            <div class="message-info">
+              <h3 class="message-name">Anonymous</h3>
+              <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            </div>
             <h3 class="message-text"><%= message.message %></h3>
           </div>
         <% }) %>
-      <% } else if (currentUser.is_member)  { %>
+      <% } else if (currentUser.is_admin)  { %>
         <% message_list.forEach(message => { %>
           <div class="message-container">
-            <h3 class="message-name"><%= message.name %></h3>
-            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+
+            <div class="message-info">
+              <h3 class="message-name"><%= message.name %></h3>
+              <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            </div>
+            
             <h3 class="message-text"><%= message.message %></h3>
+            <a  class="button-link" href="<%= message.delete_url %>">Delete message</a>
           </div>
         <% }) %>
       <%} else if (currentUser.is_member)  {%>
         <% message_list.forEach(message => { %>
           <div class="message-container">
-            <h3 class="message-name"><%= message.name %></h3>
-            <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+
+            <div class="message-info">
+              <h3 class="message-name"><%= message.name %></h3>
+              <h3 class="message-date">Posted on: <%= message.date_formatted %></h3>
+            </div>
+
             <h3 class="message-text"><%= message.message %></h3>
-            <a  class="button-link" href="<%= message.delete_url %>"></a>
           </div>
         <% }) %>
       <%}%>

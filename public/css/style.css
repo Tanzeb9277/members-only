@@ -22,5 +22,42 @@ form{
 .message-container{
     border: 1px solid gray;
     border-radius: 10px;
-    padding: 0 10px;
+    padding: 10px 10px;
+}
+
+.nav-bar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.nav-bar h1{
+    flex: 14 1 0%;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.button-link {
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button-link:hover{
+    background-color: black;
+    color: aliceblue;
+}
+
+.messages-container{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    gap: 20px;
 }
