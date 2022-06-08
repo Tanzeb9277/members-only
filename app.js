@@ -68,6 +68,8 @@ app.post('/message-form', message_controller.message_create_post)
     });
   });
 
+  app.get('/message-delete/:id', message_controller.message_delete_post)
+
   passport.use(
     new LocalStrategy((username, password, done) => {
       User.findOne({ username: username }, (err, user) => {

@@ -52,3 +52,14 @@ exports.message_create_post = [
         
     }
 ];
+
+exports.message_delete_post = function(req, res, next) {
+    
+  // Assume valid BookInstance id in field.
+  Message.findByIdAndRemove(req.params.id, function deleteMessage(err) {
+      if (err) { return next(err); }
+      // Success, so redirect to list of BookInstance items.
+      res.redirect('/');
+      });
+
+};
