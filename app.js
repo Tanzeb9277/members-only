@@ -6,6 +6,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const helmet = require('helmet');
+//const config = require('./config')
 
 const mongoDb = process.env.DB_URL;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -106,4 +107,4 @@ app.post('/message-form', message_controller.message_create_post)
   
   
 
-app.listen(3000, () => console.log("app listening on port 3000!"));
+module.exports = app;

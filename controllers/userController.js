@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require("bcryptjs");
 const passphrase =  process.env.PASSPHRASE;
+//const config = require('../config')
 const { body, check, validationResult} = require('express-validator');
 
 exports.user_create_get = function(req, res, next) {
